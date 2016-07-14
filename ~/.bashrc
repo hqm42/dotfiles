@@ -8,6 +8,15 @@ case $- in
       *) return;;
 esac
 
+# vte
+
+vte_path=`nix-env -q --out-path vte | sed -e "s/^vte[^ ]*\s*//"`
+if [ $? -eq 0 ]; then
+  source $vte_path'/etc/profile.d/vte.sh'
+else
+  echo 'please install vte: nix-env -i vte'
+fi
+
 eval `keychain --eval --quiet --agents ssh id_rsa id_rsa_new`
 
 source ~/.bash/.bash-powerline.sh
