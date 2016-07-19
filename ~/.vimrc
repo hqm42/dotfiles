@@ -1,3 +1,6 @@
+call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-rails'
+call plug#end()
 
 " Automatic indenting, on new line.
 set autoindent
