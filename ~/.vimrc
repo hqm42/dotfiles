@@ -1,5 +1,8 @@
 call plug#begin('~/.vim/plugged')
-Plug 'tpope/vim-rails'
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-surround'
+Plug 'editorconfig/editorconfig-vim'
 call plug#end()
 
 " Automatic indenting, on new line.
