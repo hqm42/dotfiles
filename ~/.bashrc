@@ -94,6 +94,7 @@ fi
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+DISABLE_SPRING=true
 
 # aliases
 alias bundleretry='until bundle; do echo "RETRY!"; done'
