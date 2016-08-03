@@ -3,6 +3,11 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'kchmck/vim-coffee-script'
+Plug 'mxw/vim-jsx'
+Plug 'ecomba/vim-ruby-refactoring'
+Plug 'vim-scripts/matchit.zip'
+Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
 " Automatic indenting, on new line.
