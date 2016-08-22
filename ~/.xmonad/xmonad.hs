@@ -128,7 +128,7 @@ newKeys conf@(XConfig {XMonad.modMask = modm}) = [
   ((modm, xK_p), shellPrompt myXPConfig),
   -- Do not leave useless conky and dzen after restart
   ((modm, xK_q), spawn "pkill -x conky; pkill -x dzen2; pkill -x trayer; xmonad --recompile; xmonad --restart"),
-  ((modm, xK_l), spawn "slock"),
+  ((modm, xK_o), spawn "slock"),
   ((modm, xK_Return), windows W.swapMaster)
    ]
  

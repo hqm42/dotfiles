@@ -8,6 +8,9 @@ Plug 'mxw/vim-jsx'
 Plug 'ecomba/vim-ruby-refactoring'
 Plug 'vim-scripts/matchit.zip'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'godlygeek/tabular'
+Plug 'rooprob/vim-urweb'
+Plug 'vim-airline/vim-airline'
 call plug#end()
 
 " Automatic indenting, on new line.
@@ -30,6 +33,13 @@ set smarttab
 
 " Show line numbers.
 set number
+
+" show the cursor position all the time
+" set ruler
+set backspace=indent,eol,start
+
+" always sho status line
+set laststatus=2
 
 " Proper autocomplete when opening files
 set wildmode=longest,list,full
