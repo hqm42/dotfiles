@@ -19,6 +19,18 @@ fi
 
 eval `keychain --eval --quiet --agents ssh id_rsa id_rsa_new`
 
+# local alias
+export DEFAULT_ALIASES=`alias`
+PROMPT_COMMAND="unalias -a; eval \"\$DEFAULT_ALIASES\"; if [[ -e .aliases ]]; then source .aliases; fi;$PROMPT_COMMAND"
+
+# reproduce actual exit status
+PROMPT_COMMAND="LAST_EXIT=\$?; function last_exit () {
+  local status=\$LAST_EXIT
+  LAST_EXIT=
+  unset -f last_exit
+  return \$status
+};$PROMPT_COMMAND;last_exit"
+
 source ~/.bash/.bash-powerline.sh
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -94,17 +106,9 @@ fi
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
-DISABLE_SPRING=true
+export DISABLE_SPRING=true
 
 # aliases
 alias bundleretry='until bundle; do echo "RETRY!"; done'
 alias be='bundle exec'
 alias rr='make -f <(echo -e "show: tmp/make_routes\n\tless tmp/make_routes\n\ntmp/make_routes: config/routes.rb\n\t bundle exec rake routes 2>/dev/null > tmp/make_routes")'
-
-# local alias
-export DEFAULT_ALIASES=`alias`
-PROMPT_COMMAND=$PROMPT_COMMAND';unalias -a; eval "$DEFAULT_ALIASES"; if [[ -e .aliases ]]; then source .aliases; fi'
-
-# prompt
-
-export PS1="\${debian_chroot:+(\$debian_chroot)}\[\033[01;32m\]\u@t550\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
