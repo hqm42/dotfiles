@@ -11,10 +11,14 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'godlygeek/tabular'
 Plug 'rooprob/vim-urweb'
 Plug 'vim-airline/vim-airline'
+Plug 'bcicen/vim-vice'
 call plug#end()
 
 " Automatic indenting, on new line.
 set autoindent
+
+" use system clipboard
+set clipboard=unnamedplus
 
 " Use spaces instead of tabs
 set expandtab
