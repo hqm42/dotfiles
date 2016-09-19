@@ -36,7 +36,8 @@
   untracked = cyan
 [core]
   editor = vim
-	excludesfile = /home/robert/.gitignore_global
+  excludesfile = /home/robert/.gitignore_global
+  pager = less -+$LESS -FRX
 [push]
   default = current
 [diff]

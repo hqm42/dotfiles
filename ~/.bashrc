@@ -112,3 +112,4 @@ export DISABLE_SPRING=true
 alias bundleretry='until bundle; do echo "RETRY!"; done'
 alias be='bundle exec'
 alias rr='make -f <(echo -e "show: tmp/make_routes\n\tless tmp/make_routes\n\ntmp/make_routes: config/routes.rb\n\t bundle exec rake routes 2>/dev/null > tmp/make_routes")'
+export PATH="$PATH:/home/robert/.php-school/bin"
