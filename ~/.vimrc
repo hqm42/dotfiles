@@ -12,6 +12,7 @@ Plug 'godlygeek/tabular'
 Plug 'rooprob/vim-urweb'
 Plug 'vim-airline/vim-airline'
 Plug 'bcicen/vim-vice'
+Plug 'pearofducks/ansible-vim'
 call plug#end()
 
 " Automatic indenting, on new line.
@@ -51,6 +52,12 @@ set wildmenu
 
 " Highlight searches
 set hlsearch
+
+" incsearch
+set incsearch
+
+" always show 2 lines above/below cursor
+set scrolloff=2
 
 " Show some whitespace characters
 set listchars=eol:¶,tab:▸\ ,trail:·,extends:>,precedes:<
