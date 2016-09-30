@@ -19,6 +19,12 @@ fi
 
 eval `keychain --eval --quiet --agents ssh id_rsa id_rsa_new`
 
+# global aliases
+alias bundleretry='until bundle; do echo "RETRY!"; done'
+alias be='bundle exec'
+alias rr='make -f <(echo -e "show: tmp/make_routes\n\tless tmp/make_routes\n\ntmp/make_routes: config/routes.rb\n\t bundle exec rake routes 2>/dev/null > tmp/make_routes")'
+alias enc='sudo vim /etc/nixos/configuration.nix'
+
 # local alias
 export DEFAULT_ALIASES=`alias`
 PROMPT_COMMAND="unalias -a; eval \"\$DEFAULT_ALIASES\"; if [[ -e .aliases ]]; then source .aliases; fi;$PROMPT_COMMAND"
@@ -107,9 +113,3 @@ fi
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 export DISABLE_SPRING=true
-
-# aliases
-alias bundleretry='until bundle; do echo "RETRY!"; done'
-alias be='bundle exec'
-alias rr='make -f <(echo -e "show: tmp/make_routes\n\tless tmp/make_routes\n\ntmp/make_routes: config/routes.rb\n\t bundle exec rake routes 2>/dev/null > tmp/make_routes")'
-export PATH="$PATH:/home/robert/.php-school/bin"

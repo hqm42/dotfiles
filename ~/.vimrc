@@ -13,6 +13,7 @@ Plug 'rooprob/vim-urweb'
 Plug 'vim-airline/vim-airline'
 Plug 'bcicen/vim-vice'
 Plug 'pearofducks/ansible-vim'
+Plug 'thoughtbot/vim-rspec'
 call plug#end()
 
 " Automatic indenting, on new line.
@@ -122,3 +123,6 @@ colorscheme inkpot
 " Avoid flashing terminal output in :Ag
 set shellpipe=>
 
+" rspec
+map <Leader>r :call RunNearestSpec()<CR>
+map <Leader>R :call RunCurrentSpecFile()<CR>
