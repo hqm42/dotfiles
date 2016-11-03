@@ -40,7 +40,7 @@ main = do
      }
  
 -- Font
-myFont = "-*-terminus-*-*-*-*-12-*-*-*-*-*-iso8859-*"
+myFont = "-*-noto mono-*-*-*-*-12-*-*-*-*-*-iso8859-*"
  
 -- Colors
 myBgBgColor = "black"
@@ -65,7 +65,7 @@ myUrgencyHintFgColor = "white"
 myUrgencyHintBgColor = "brown"
  
 -- dzen general options
-myDzenGenOpts = "-fg '" ++ myFgColor ++ "' -bg '" ++ myBgColor ++ "' -fn '" ++ myFont ++ "' -h '" ++ (show barHeight) ++ "'"
+myDzenGenOpts = "-xs 0 -fg '" ++ myFgColor ++ "' -bg '" ++ myBgColor ++ "' -fn '" ++ myFont ++ "' -h '" ++ (show barHeight) ++ "'"
 
 myScreenWidth = 1920
 barHeight = 16
@@ -129,7 +129,11 @@ newKeys conf@(XConfig {XMonad.modMask = modm}) = [
   -- Do not leave useless conky and dzen after restart
   ((modm, xK_q), spawn "pkill -x conky; pkill -x dzen2; pkill -x trayer; xmonad --recompile; xmonad --restart"),
   ((modm, xK_o), spawn "slock"),
-  ((modm, xK_Return), windows W.swapMaster)
+  ((modm, xK_Return), windows W.swapMaster),
+  ((modm, xK_Right), spawn "xrandr --output eDP1 --auto --output HDMI1 --auto --right-of eDP1"),
+  ((modm, xK_Left), spawn "xrandr --output eDP1 --auto --output HDMI1 --auto --left-of eDP1"),
+  ((modm, xK_Up), spawn "xrandr --output eDP1 --auto --output HDMI1 --auto --above eDP1"),
+  ((modm, xK_Down), spawn "xrandr --output eDP1 --auto --output HDMI1 --auto --below eDP1")
    ]
  
 -- Dzen config

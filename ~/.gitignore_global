@@ -1,3 +1,5 @@
 *.swp
 invoker.ini
 /doc/tags
+.aliases
+ruby.nix

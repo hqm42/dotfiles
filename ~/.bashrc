@@ -25,6 +25,14 @@ alias be='bundle exec'
 alias rr='make -f <(echo -e "show: tmp/make_routes\n\tless tmp/make_routes\n\ntmp/make_routes: config/routes.rb\n\t bundle exec rake routes 2>/dev/null > tmp/make_routes")'
 alias enc='sudo vim /etc/nixos/configuration.nix'
 
+which ()
+{
+  (alias; declare -f) | /usr/bin/env which --tty-only --read-alias --read-functions --show-tilde --show-dot $@
+}
+export -f which
+
+
+
 # local alias
 export DEFAULT_ALIASES=`alias`
 PROMPT_COMMAND="unalias -a; eval \"\$DEFAULT_ALIASES\"; if [[ -e .aliases ]]; then source .aliases; fi;$PROMPT_COMMAND"

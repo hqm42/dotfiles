@@ -14,6 +14,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'bcicen/vim-vice'
 Plug 'pearofducks/ansible-vim'
 Plug 'thoughtbot/vim-rspec'
+Plug 'LnL7/vim-nix'
 call plug#end()
 
 " Automatic indenting, on new line.
