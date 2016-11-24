@@ -8,7 +8,8 @@
   ci = commit
   br = branch
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-  pr  = pull --rebase
+  pr = pull --rebase
+  fp = push --force-with-lease
   update = "!echo '==> Stash local changes'; res=$(git stash save 'auto stash by update'); echo "$res"; echo; \
             echo '==> Fetch from remote repo and merge/rebase'; git pull --rebase; echo; \
             echo "$res" | grep -q '^No local changes to save' \
