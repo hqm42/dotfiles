@@ -125,5 +125,6 @@ colorscheme inkpot
 set shellpipe=>
 
 " rspec
+let g:rspec_command = "!clear && bundle exec rspec {spec}"
 map <Leader>r :call RunNearestSpec()<CR>
 map <Leader>R :call RunCurrentSpecFile()<CR>
