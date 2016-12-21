@@ -1,20 +1,22 @@
 gap_y -20000
- 
+
 background no
 double_buffer yes 
 out_to_console yes 
 own_window yes 
 own_window_type desktop
-update_interval 1.0
+update_interval 0.1
 font -*-noto mono-*-*-*-*-12-*-*-*-*-*-iso8859-*
- 
+use_spacer left
+pad_percents 2
+
 TEXT
 ^i(.xmonad/dzen-icons/cpu.xbm) ${cpu cpu0}% \
 ^i(.xmonad/dzen-icons/cpu.xbm) ${cpu cpu1}% \
 ^i(.xmonad/dzen-icons/cpu.xbm) ${cpu cpu2}% \
 ^i(.xmonad/dzen-icons/cpu.xbm) ${cpu cpu3}% \
-^i(.xmonad/dzen-icons/mem.xbm) $memperc% \
-^i(.xmonad/dzen-icons/ac_01.xbm) ${battery_short BAT0} \
+^fg(\#00ffff)^i(.xmonad/dzen-icons/mem.xbm) $memperc% \
+^fg(\#00ff00)^i(.xmonad/dzen-icons/ac_01.xbm) ${battery_short BAT0} \
 ^i(.xmonad/dzen-icons/ac_01.xbm) ${battery_short BAT1} \
-^i(.xmonad/dzen-icons/spkr_01.xbm) ${exec amixer get Master -M | grep -oE "[[:digit:]]*%"} \
-^i(.xmonad/dzen-icons/clock.xbm) ${time %b %e %H:%M:%S}
+^fg(\#ff0000)^i(.xmonad/dzen-icons/spkr_01.xbm) ${exec amixer get Master -M | grep -oE "[[:digit:]]*%"} \
+^fg()^i(.xmonad/dzen-icons/clock.xbm) ^ca(1, /usr/bin/env bash -c 'notify-send "`cal`"')${time %b %e}^ca() ${time %H:%M:%S}
