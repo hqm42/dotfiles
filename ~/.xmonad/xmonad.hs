@@ -133,7 +133,8 @@ newKeys conf@(XConfig {XMonad.modMask = modm}) = [
   ((modm, xK_Right), spawn "xrandr --output eDP1 --auto --output HDMI1 --auto --right-of eDP1"),
   ((modm, xK_Left), spawn "xrandr --output eDP1 --auto --output HDMI1 --auto --left-of eDP1"),
   ((modm, xK_Up), spawn "xrandr --output eDP1 --auto --output HDMI1 --auto --above eDP1"),
-  ((modm, xK_Down), spawn "xrandr --output eDP1 --auto --output HDMI1 --auto --below eDP1")
+  ((modm, xK_Down), spawn "xrandr --output eDP1 --auto --output HDMI1 --auto --below eDP1"),
+  ((modm , xK_b ), sendMessage ToggleStruts)
    ]
  
 -- Dzen config
