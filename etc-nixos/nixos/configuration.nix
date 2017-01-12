@@ -20,7 +20,7 @@ in
   # Define on which hard drive you want to install Grub.
   boot.loader.grub.device = "/dev/sda";
 
-  boot.kernelPackages = pkgs.linuxPackages_4_8;
+  boot.kernelPackages = pkgs.linuxPackages_4_4;
   boot.kernelModules = [ "ecryptfs" ];
   boot.blacklistedKernelModules = [ "snd_pcsp" ];
 
@@ -66,6 +66,7 @@ in
     chromium
     conky
     cowsay
+    gitAndTools.diff-so-fancy
     dmidecode
     dunst
     dzen2
@@ -83,6 +84,7 @@ in
     gnumake
     go
     google-chrome
+    gparted
     graphviz
     htop
     imagemagick
@@ -122,6 +124,7 @@ in
     urweb
     vagrant
     vim_configurable
+    vivaldi
     wget
     which
     yi
@@ -148,6 +151,7 @@ in
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  services.sshd.enable = true;
   services.mysql = {
     enable = true;
     package = pkgs.mariadb;
@@ -174,7 +178,7 @@ in
     synaptics = {
       enable = true;
       accelFactor = "0.01";
-      minSpeed = "0.8";
+      minSpeed = "0.0";
       maxSpeed = "2.0";
       twoFingerScroll = true;
       horizTwoFingerScroll = false;
