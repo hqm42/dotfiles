@@ -15,6 +15,10 @@ Plug 'bcicen/vim-vice'
 Plug 'pearofducks/ansible-vim'
 Plug 'thoughtbot/vim-rspec'
 Plug 'LnL7/vim-nix'
+Plug 'exu/pgsql.vim'
+Plug 'neomake/neomake'
+Plug 'tpope/vim-speeddating'
+Plug 'jceb/vim-orgmode'
 call plug#end()
 
 " Automatic indenting, on new line.
@@ -77,7 +81,8 @@ if has("autocmd")
 endif
 
 let mapleader = ","
-nmap <leader>v :tabedit $MYVIMRC<CR>
+let maplocalleader = "-"
+nmap <leader>v :e $MYVIMRC<CR>
 
 " Smart home key
 function! SmartHome()
@@ -121,6 +126,10 @@ colorscheme inkpot
 "colorscheme solarized
 "colorscheme railscasts
 
+
+let &colorcolumn=join(range(121,999),",")
+highlight ColorColumn ctermbg=235 guibg=#2c2d27
+
 " Avoid flashing terminal output in :Ag
 set shellpipe=>
 
@@ -128,3 +137,9 @@ set shellpipe=>
 let g:rspec_command = "!clear && bundle exec rspec {spec}"
 map <Leader>r :call RunNearestSpec()<CR>
 map <Leader>R :call RunCurrentSpecFile()<CR>
+
+" default sql mode
+let g:sql_type_default = 'pgsql'
+
+let g:syntastic_haml_checkers = ['haml_lint']
+let g:syntastic_ruby_checkers = ['rubocop']

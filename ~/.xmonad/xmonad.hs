@@ -33,6 +33,7 @@ main = do
       , terminal = "gnome-terminal"
       , manageHook = manageDocks <+> myManageHook <+> manageHook defaultConfig
       , layoutHook = avoidStruts $ myLayoutHook
+      , handleEventHook = docksEventHook <+> handleEventHook defaultConfig
       , startupHook = setWMName "LG3D"
       , logHook = dynamicLogWithPP $ myDzenPP myStatusBarPipe
       , modMask = mod4Mask
@@ -130,10 +131,10 @@ newKeys conf@(XConfig {XMonad.modMask = modm}) = [
   ((modm, xK_q), spawn "pkill -x conky; pkill -x dzen2; pkill -x trayer; xmonad --recompile; xmonad --restart"),
   ((modm, xK_o), spawn "slock"),
   ((modm, xK_Return), windows W.swapMaster),
-  ((modm, xK_Right), spawn "xrandr --output eDP1 --auto --output HDMI1 --auto --right-of eDP1"),
-  ((modm, xK_Left), spawn "xrandr --output eDP1 --auto --output HDMI1 --auto --left-of eDP1"),
-  ((modm, xK_Up), spawn "xrandr --output eDP1 --auto --output HDMI1 --auto --above eDP1"),
-  ((modm, xK_Down), spawn "xrandr --output eDP1 --auto --output HDMI1 --auto --below eDP1"),
+  ((modm, xK_Right), spawn "xrandr --output eDP1 --auto --output DP1 --auto --right-of eDP1"),
+  ((modm, xK_Left), spawn "xrandr --output eDP1 --auto --output DP1 --auto --left-of eDP1"),
+  ((modm, xK_Up), spawn "xrandr --output eDP1 --auto --output DP1 --auto --above eDP1"),
+  ((modm, xK_Down), spawn "xrandr --output eDP1 --auto --output DP1 --auto --below eDP1"),
   ((modm , xK_b ), sendMessage ToggleStruts)
    ]
  
