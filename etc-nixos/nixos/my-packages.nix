@@ -7,8 +7,8 @@ with import <nixpkgs> {};
     src = fetchFromGitHub {
       owner = "rbenv";
       repo = "rbenv";
-      rev = "c7dcaf12593837eeb8d46b69bccf3d28666b728c";
-      sha256 = "1857phpp7vlq533f4akns26xhgszg229yxq0frh1rxd30447wlfs";
+      rev = "4f8925abe7e4b373156bba9cc5310e8e0d04a28a";
+      sha256 = "08rcx60snlvwgj2s8jj4b7lg9bncm2149rqimbly00h5ilkh1n5p";
     };
    
     dontBuild = true;
@@ -25,8 +25,8 @@ with import <nixpkgs> {};
     src = fetchFromGitHub {
       owner = "rbenv";
       repo = "ruby-build";
-      rev = "c9ba074411871b956133e98676a66c40a33395bd";
-      sha256 = "0c6b1yqrx41wa4aw156a0bs2ls9ndlchnrn4s6rsvyxbgw29gq1v";
+      rev = "0e561adbe6c5b1280b2d47f20de47bea18267d92";
+      sha256 = "1zvb3fh0jkrl5gikv32qm9fa84249c7m67plcnrk637j546plppb";
     };
    
     dontBuild = true;

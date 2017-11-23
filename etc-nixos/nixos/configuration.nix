@@ -6,6 +6,7 @@
 
 let
   mypkgs = import ./my-packages.nix;
+  unstable = import <nixos-unstable> { config.allowUnfree = true; };
 in
 
 {
@@ -39,6 +40,10 @@ in
     # 138.201.194.133 www.avocadostore.de
   '';
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.firewall = {
+    allowedTCPPorts = [ 3000 ];
+  };
+
 
   # Select internationalisation properties.
   i18n = {
@@ -53,19 +58,37 @@ in
   # unfree packages are ok I guess
   nixpkgs.config.allowUnfree = true;
 
-  fonts.fonts = [ pkgs.noto-fonts pkgs.noto-fonts-emoji ];
+  fonts = {
+    fonts = [ pkgs.noto-fonts pkgs.noto-fonts-emoji ];
+    enableFontDir = true;
+  };
+
+  environment.sessionVariables = {
+    XCURSOR_PATH = [
+      "${config.system.path}/share/icons"
+      "$HOME/.icons"
+      "$HOME/.nix-profile/share/icons"
+    ];
+    GTK_DATA_PREFIX = [
+      "${config.system.path}"
+    ];
+  };
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs // mypkgs; [
     acpi
+    albert
+    androidsdk
     ansible2
     atom
     bc
     nodePackages.castnow
     chromium
     conky
+    copyq
     cowsay
+    ctags
     gitAndTools.diff-so-fancy
     dmidecode
     dunst
@@ -75,49 +98,60 @@ in
     filezilla
     firefox
     gcc
+    ghc
     gimp
     git
+    gitAndTools.gitAnnex
+    gitkraken
     gnome3.dconf
     gnome3.gnome_terminal
     gnome3.nautilus
     gnome3.vte
     gnumake
     go
-    google-chrome
+    unstable.pkgs.google-chrome
     gparted
     graphviz
+    hicolor_icon_theme
     htop
     imagemagick
     ipmitool
     keychain
+    ledger
     libreoffice
     lsof
+    mariadb
     mplayer
     multitail
     nixops
     nmap
     nodejs
+    nodePackages.elasticdump
     openjdk
     openscad
     openssl
     pgadmin
     phantomjs2
     php
+    pngcrush
     protobuf3_0
     pv
     python
     rbenv
     readline
+    rrdtool
     ruby
     rubybuild
     samsungUnifiedLinuxDriver
     skype
     slack
-    slock
     sqitchPg
+    stack
     stow
     # teamviewer
     tig
+    tldr
+    transmission
     trayer
     tree
     unzip
@@ -127,11 +161,19 @@ in
     vivaldi
     wget
     which
-    yi
+    xmlstarlet
+    yarn
     zeal
     zlib
+    nix-zsh-completions
     zstd
+    # icon theme stuff
+    adapta-gtk-theme
+    gnome3.adwaita-icon-theme
+    xorg.xcursorthemes
+    lxappearance
   ];
+  environment.shells = [ pkgs.zsh ];
 
   # Security
   security.pam = {
@@ -145,7 +187,11 @@ in
     #     }
     #   ];
   };
-  security.setuidPrograms = [ "slock" ];
+  security.wrappers = {
+    slock = {
+      source = "${pkgs.slock.out}/bin/slock";
+     };
+  };
 
   # List services that you want to enable:
 
@@ -153,15 +199,15 @@ in
   services.openssh.enable = true;
   services.sshd.enable = true;
   services.mysql = {
-    enable = true;
+    enable = false;
     package = pkgs.mariadb;
   };
   services.postgresql = {
     enable = true;
-    authentication = "local all all ident";
+    authentication = "host all all localhost trust";
   };
   services.elasticsearch = {
-    enable = true;
+    enable = false;
     plugins = [ mypkgs.elasticsearchPlugins.elasticsearch_kopf ];
   };
   services.redis =  {
@@ -228,10 +274,15 @@ in
     home = "/home/robert";
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "docker" ];
+    shell = pkgs.zsh;
   };
 
   # other options
   programs.bash.enableCompletion = true;
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+  };
 
   # virtualbox
   virtualisation.virtualbox.host.enable = true;
@@ -241,5 +292,5 @@ in
 
 
   # The NixOS release to be compatible with for stateful data such as databases.
-  system.stateVersion = "16.03";
+  system.stateVersion = "17.03";
 }
