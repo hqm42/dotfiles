@@ -1,6 +1,7 @@
 import XMonad
 import XMonad.Core
  
+import XMonad.Config.Gnome
 import XMonad.Prompt
 import XMonad.Prompt.Shell
 import XMonad.Prompt.Man
@@ -27,15 +28,15 @@ main = do
    myStatusBarPipe <- spawnPipe myStatusBar
    conkyBar <- spawnPipe myConkyBar
    trayer <- spawnPipe myTrayer
-   xmonad $ myUrgencyHook $ defaultConfig
+   xmonad $ myUrgencyHook $ gnomeConfig
       { normalBorderColor  = myInactiveBorderColor
       , focusedBorderColor = myActiveBorderColor
-      , terminal = "gnome-terminal"
-      , manageHook = manageDocks <+> myManageHook <+> manageHook defaultConfig
-      , layoutHook = avoidStruts $ myLayoutHook
-      , handleEventHook = docksEventHook <+> handleEventHook defaultConfig
-      , startupHook = setWMName "LG3D"
-      , logHook = dynamicLogWithPP $ myDzenPP myStatusBarPipe
+      -- , terminal = "gnome-terminal"
+      -- , manageHook = manageDocks <+> myManageHook <+> manageHook defaultConfig
+      -- , layoutHook = myLayoutHook
+      -- , handleEventHook = docksEventHook <+> handleEventHook defaultConfig
+      -- , startupHook = setWMName "LG3D"
+      -- , logHook = dynamicLogWithPP $ myDzenPP myStatusBarPipe
       , modMask = mod4Mask
       , keys = myKeys
      }
