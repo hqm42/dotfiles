@@ -9,6 +9,13 @@
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="robbyrussell"
 
+# Set list of themes to load
+# Setting this variable when ZSH_THEME=random
+# cause zsh load theme from this variable instead of
+# looking in ~/.oh-my-zsh/themes/
+# An empty array have no effect
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -51,7 +58,9 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(
+  git
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -79,6 +88,11 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
 alias bundleretry='until bundle; do echo "RETRY!"; done'
 alias be='bundle exec'
 alias rr='make -f <(echo -e "show: tmp/make_routes\n\tless tmp/make_routes\n\ntmp/make_routes: config/routes.rb\n\t bundle exec rake routes 2>/dev/null > tmp/make_routes")'
@@ -86,22 +100,11 @@ alias enc='sudo vim /etc/nixos/configuration.nix'
 alias today='date --iso-8601'
 
 #avocadostore aliases
-alias bers='nix-shell ruby.nix --run "bundle exec puma -p 3000"'
-alias berc='nix-shell ruby.nix --run "bundle exec rails c"'
-alias bercs='nix-shell ruby.nix --run "bundle exec rails c --sandbox"'
-alias bes='nix-shell ruby.nix --run "bundle exec sidekiq"'
-alias bess='nix-shell ruby.nix --run "bundle exec sidekiq -C config/sidekiq_slow_job.yml"'
-
-# vte
-
-vte_path=`nix-env -q --out-path vte | sed -e "s/^vte[^ ]*\s*//"`
-if [ $? -eq 0 ]; then
-  source $vte_path'/etc/profile.d/vte.sh'
-else
-  echo 'please install vte: nix-env -i vte'
-fi
-
-eval `keychain --eval --quiet --agents ssh id_rsa id_rsa_new`
+alias bers='bundle exec puma -p 3000'
+alias berc='bundle exec rails c'
+alias bercs='bundle exec rails c --sandbox'
+alias bes='bundle exec sidekiq'
+alias bess='bundle exec sidekiq -C config/sidekiq_slow_job.yml'
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
